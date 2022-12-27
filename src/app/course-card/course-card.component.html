@@ -1,0 +1,37 @@
+<ng-container *ngIf="course">
+  <div class="course-card" [ngClass]="cardClasses()">
+    <div class="course-title">{{ cardIndex + " - " + course.description }}</div>
+
+    <!-- ContentProjection ng-content serve para projetar o que vem de onde está sendo chamado o componente, para dentro do componente, para poder lidar quando for chamado a course-card, e pode ser chamado pela classe css ou pela tag HTML -->
+    <ng-content
+      select="course-image"
+      *ngIf="course.iconUrl; else noImage"
+    ></ng-content>
+
+    <!-- Instancia do template passado no appc-component sendo passado como Input -->
+    <ng-template #noImage>
+      <ng-container *ngTemplateOutlet="noImageTemplate; context: {description: course.description}"></ng-container>
+    </ng-template>
+
+    <ng-content select=".course-description"></ng-content>
+
+    <ng-container [ngSwitch]="course.category">
+      <div class="course-category">
+        <ng-container *ngSwitchCase="'BEGINNER'">
+          <div class="category">Beginner</div>
+        </ng-container>
+        <ng-container *ngSwitchCase="'INTERMEDIATE'">
+          <div class="category">Intermediate</div>
+        </ng-container>
+        <ng-container *ngSwitchCase="'ADVANCED'">
+          <div class="category">Advanced</div>
+        </ng-container>
+        <ng-container *ngSwitchDefault>
+          <div class="category">All Levels</div>
+        </ng-container>
+      </div>
+    </ng-container>
+
+    <button (click)="onCourseViewed()">View Course</button>
+  </div>
+</ng-container>
