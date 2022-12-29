@@ -20,7 +20,7 @@
     <img src="/assets/empty-image.png" alt="Empty Image">
   </ng-template>
 
-  <course-card
+  <course-card [highlighted]="false"
     [class.is-even]="isEven"
     [class.is-odd]="isOdd"
     (courseSelected)="onCourseEmit($event)"

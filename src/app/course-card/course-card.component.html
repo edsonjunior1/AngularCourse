@@ -1,8 +1,9 @@
 <ng-container *ngIf="course">
   <div class="course-card" [ngClass]="cardClasses()">
-    <div class="course-title">{{ cardIndex + " - " + course.description }}</div>
+    <div class="course-title">{{ cardIndex + ". " + course.description }}</div>
 
-    <!-- ContentProjection ng-content serve para projetar o que vem de onde está sendo chamado o componente, para dentro do componente, para poder lidar quando for chamado a course-card, e pode ser chamado pela classe css ou pela tag HTML -->
+    <!-- ContentProjection ng-content serve para projetar o que vem de onde está sendo chamado o componente, para dentro do componente,
+    para poder lidar quando for chamado a course-card, e pode ser chamado pela classe css ou pela tag HTML -->
     <ng-content
       select="course-image"
       *ngIf="course.iconUrl; else noImage"

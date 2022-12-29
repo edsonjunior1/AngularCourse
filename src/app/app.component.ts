@@ -24,8 +24,6 @@ export class AppComponent implements AfterViewInit {
 
   constructor(){}
 
-//PAREI ANTES DE VER VIEWCHIELDREN
-
   ngAfterViewInit(): void {
     //Only local in component
     this.containerDiv.nativeElement;

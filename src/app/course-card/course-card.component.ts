@@ -29,11 +29,11 @@ export class CourseCardComponent implements OnInit, AfterViewInit, AfterContentI
   ngOnInit() { }
 
   ngAfterViewInit(){
-    console.log(this.image);
+    //console.log(this.image);
   }
 
   ngAfterContentInit(): void {
-    console.log(this.images);
+    //console.log(this.images);
   }
 
   onCourseViewed() {
