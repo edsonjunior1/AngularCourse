@@ -29,6 +29,10 @@ export class AppComponent implements AfterViewInit {
     this.containerDiv.nativeElement;
   }
 
+  onToggle(eventHightlighted: boolean): void {
+    console.log('Output disparado');
+  }
+
 
   onCourseEmit(course: Course) {
     console.log(`Objeto destructured which the description is: ${course.description}`);

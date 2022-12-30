@@ -17,18 +17,18 @@ export class CourseCardComponent implements OnInit, AfterViewInit, AfterContentI
   @Input()
   noImageTemplate!: TemplateRef<any>;
 
-  @ContentChild(CourseImageComponent, {read: ElementRef})
+  @ContentChild(CourseImageComponent, { read: ElementRef })
   image!: ElementRef;
 
   @ContentChildren(CourseImageComponent)
-  images!:QueryList<CourseImageComponent>
+  images!: QueryList<CourseImageComponent>
 
   // In order to see the query results, we need to use @ContentChild, so that we can only inside the ng-scontent
   constructor() { }
 
   ngOnInit() { }
 
-  ngAfterViewInit(){
+  ngAfterViewInit() {
     //console.log(this.image);
   }
 
@@ -44,7 +44,7 @@ export class CourseCardComponent implements OnInit, AfterViewInit, AfterContentI
     return this.course && this.course.iconUrl
   }
 
-  cardClasses():any {
+  cardClasses(): any {
     if (this.course.category == 'BEGINNER') {
       return 'beginner';
     }

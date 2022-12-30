@@ -13,26 +13,37 @@
   Adding Course
 </button> -->
 
-<div class="courses" #container *ngFor="let course of courses; index as i; first as isFirst; last as isLast; even as isEven; odd as isOdd">
-
+<div
+  class="courses"
+  #container
+  *ngFor="
+    let course of courses;
+    index as i;
+    first as isFirst;
+    last as isLast;
+    even as isEven;
+    odd as isOdd
+  "
+>
   <ng-template #noImage let-courseName="description">
-    <p class="warn">{{courseName}}&nbsp;has no image loaded!</p>
-    <img src="/assets/empty-image.png" alt="Empty Image">
+    <p class="warn">{{ courseName }}&nbsp;has no image loaded!</p>
+    <img src="/assets/empty-image.png" alt="Empty Image" />
   </ng-template>
 
-  <course-card [highlighted]="false"
+  <course-card
+    [highlighted]="!course"
+    (toggleHighlighted)="onToggle($event)"
     [class.is-even]="isEven"
     [class.is-odd]="isOdd"
     (courseSelected)="onCourseEmit($event)"
     [course]="course"
-    [cardIndex]="i+1"
+    [cardIndex]="i + 1"
     [noImageTemplate]="noImage"
-    >
-
+  >
     <course-image [src]="course.iconUrl"></course-image>
 
     <div class="course-description">
       {{ course.longDescription }}
     </div>
-</course-card>
+  </course-card>
 </div>
