@@ -1,4 +1,4 @@
-import { Directive, HostBinding, HostListener, Input, EventEmitter, Output } from '@angular/core';
+import {Directive, HostBinding, HostListener, Input, EventEmitter, Output} from '@angular/core';
 
 @Directive({
   selector: '[highlighted]'
@@ -9,9 +9,10 @@ export class HighlightedDirective {
   isHighlighted = false;
 
   @Output()
-  toggleHighlighted= new EventEmitter();
+  toggleHighlighted = new EventEmitter();
 
-  constructor() { }
+  constructor() {
+  }
 
   /*
   Decorator that marks a DOM property as a host-binding property and supplies configuration metadata.
