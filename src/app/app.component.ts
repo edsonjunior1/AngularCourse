@@ -2,6 +2,7 @@ import { AfterViewInit, Component, ElementRef, ViewChild, ViewChildren, QueryLis
 import { COURSES } from '../db-data';
 import { Course } from './model/course';
 import { CourseCardComponent } from './course-card/course-card.component';
+import { HighlightedDirective } from './directives/highlighted.directive';
 
 @Component({
   selector: 'app-root',
@@ -10,11 +11,12 @@ import { CourseCardComponent } from './course-card/course-card.component';
 })
 export class AppComponent implements AfterViewInit {
 
-  // @ViewChild('course') elementReference!: ElementRef;
+  @ViewChild(HighlightedDirective, { read: HighlightedDirective }) highlighted!: HighlightedDirective;
+
   @ViewChild('container') containerDiv!: ElementRef;
 
   //Query List dos elementos, elementos do DOM, assim como o viewchild não pega outros componentes
-  @ViewChildren(CourseCardComponent, {read: ElementRef})
+  @ViewChildren(CourseCardComponent, { read: ElementRef })
   cards!: QueryList<ElementRef>;
 
   courses = COURSES;
@@ -22,11 +24,13 @@ export class AppComponent implements AfterViewInit {
   _id: number = this.course.lenght;
 
 
-  constructor(){}
+  constructor() { }
 
   ngAfterViewInit(): void {
     //Only local in component
     this.containerDiv.nativeElement;
+
+    console.log('Diretiva highlighted ',this.highlighted);
   }
 
   onToggle(eventHightlighted: boolean): void {
@@ -39,19 +43,19 @@ export class AppComponent implements AfterViewInit {
     // this.elementReference.nativeElement.className = 'alert alert-success';
   }
 
-  onCourseEmited(){
+  onCourseEmited() {
 
     for (var i = 0; i < this.course.lenght; i++) {
       this._id = this._id + 1;
     }
 
     this.courses.push({
-        id: this._id,
-        description: "New Course Added!",
-        iconUrl: 'https://s3-us-west-1.amazonaws.com/angular-university/course-images/angular-core-in-depth-small.png',
-        longDescription: "A detailed walk-through of the most important part of Angular - the Core and Common modules",
-        category: 'INTERMEDIATE',
-        lessonsCount: 10
+      id: this._id,
+      description: "New Course Added!",
+      iconUrl: 'https://s3-us-west-1.amazonaws.com/angular-university/course-images/angular-core-in-depth-small.png',
+      longDescription: "A detailed walk-through of the most important part of Angular - the Core and Common modules",
+      category: 'INTERMEDIATE',
+      lessonsCount: 10
     });
   }
 }

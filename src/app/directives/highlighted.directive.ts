@@ -1,7 +1,8 @@
 import {Directive, HostBinding, HostListener, Input, EventEmitter, Output} from '@angular/core';
 
 @Directive({
-  selector: '[highlighted]'
+  selector: '[highlighted]',
+  exportAs: 'hl'
 })
 export class HighlightedDirective {
 
@@ -39,6 +40,16 @@ export class HighlightedDirective {
   @HostListener('mouseleave')
   mouseOut() {
     this.isHighlighted = false;
+    this.toggleHighlighted.emit(this.isHighlighted);
+  }
+
+
+  /*
+    Quando utiliza o ExportAs, se cria um alias para poder usar qualquer funcão publica da diretiva em diferentes partes do component.
+    Ex: App.component => #highlighter="hl" e depois utiliza no double-click da description para disparar a func toggle()
+   */
+  toggle(){
+    this.isHighlighted = !this.isHighlighted;
     this.toggleHighlighted.emit(this.isHighlighted);
   }
 
