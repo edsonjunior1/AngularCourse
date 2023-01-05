@@ -1,52 +1,40 @@
 <ng-container>
-  <div class="top-menu">
-    <img
-      class="logo"
-      src="https://angular-academy.s3.amazonaws.com/main-logo/main-page-logo-small-hat.png"
-    />
-  </div>
 
-  <!-- <div *ngFor="let pair of course | keyvalue">
-    {{pair.key + ': ' + pair.value}}
-  </div> -->
+  <div class="top-menu">
+    <img class="logo" src="https://angular-academy.s3.amazonaws.com/main-logo/main-page-logo-small-hat.png"/>
+  </div>
 
   <!-- <button (click)="onCourseEmited()">
     Adding Course
   </button> -->
 
-  <div
-    class="courses"
-    #container
-    *ngFor="
-      let course of courses;
-      index as i;
-      first as isFirst;
-      last as isLast;
-      even as isEven;
-      odd as isOdd
-    "
-  >
+  <div class="courses" #container *ngFor="let course of courses; index as i; first as isFirst; last as isLast; even as isEven; odd as isOdd">
+
     <ng-template #noImage let-courseName="description">
       <p class="warn">{{ courseName }}&nbsp;has no image loaded!</p>
       <img src="/assets/empty-image.png" alt="Empty Image" />
     </ng-template>
 
     <course-card
-      [highlighted]="course"
+      [highlighted]="!course"
       #highlighter="hl"
-      (toggleHighlighted)="onToggle($event)"
-      [class.is-even]="isEven"
-      [class.is-odd]="isOdd"
+      (toggleHighlight)="onToggle($event)"
       (courseSelected)="onCourseEmit($event)"
       [course]="course"
-      [cardIndex]="i + 1"
       [noImageTemplate]="noImage"
-    >
-      <course-image [src]="course.iconUrl"></course-image>
+      [cardIndex]="i + 1"
+      [class.isEven]="isEven"
+      [class.isOdd]="isOdd"
+      >
+      <!-- <course-image [src]="course.iconUrl"></course-image> -->
 
-      <div class="course-description" (dblclick)="highlighter.toggle()">
+      <course-image *ngxUnless="!course.iconUrl" [src]="course.iconUrl"></course-image>
+
+      <div class="course-description" (dblclick)="highlighted.toggle()">
         {{ course.longDescription }}
       </div>
+
     </course-card>
+
   </div>
 </ng-container>

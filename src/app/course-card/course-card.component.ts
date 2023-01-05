@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output, AfterViewInit, ContentChild, ElementRef, ViewChildren, QueryList, ContentChildren, AfterContentInit, TemplateRef } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, AfterViewInit, ContentChild, ElementRef, ViewChildren, QueryList, ContentChildren, AfterContentInit, TemplateRef, ViewEncapsulation } from '@angular/core';
 import { Course } from '../model/course';
 import { CourseImageComponent } from '../course-image/course-image.component';
 

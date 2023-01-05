@@ -11,7 +11,8 @@ import { HighlightedDirective } from './directives/highlighted.directive';
 })
 export class AppComponent implements AfterViewInit {
 
-  @ViewChild(HighlightedDirective, { read: HighlightedDirective }) highlighted!: HighlightedDirective;
+  @ViewChild(HighlightedDirective, { read: HighlightedDirective })
+  highlighted!: HighlightedDirective;
 
   @ViewChild('container') containerDiv!: ElementRef;
 
@@ -29,12 +30,10 @@ export class AppComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     //Only local in component
     this.containerDiv.nativeElement;
-
-    console.log('Diretiva highlighted ',this.highlighted);
   }
 
-  onToggle(eventHightlighted: boolean): void {
-    console.log('Output disparado');
+  onToggle(eventHightlighted: boolean) {
+    console.log('toggle');
   }
 
 

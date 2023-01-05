@@ -10,7 +10,7 @@ export class HighlightedDirective {
   isHighlighted = false;
 
   @Output()
-  toggleHighlighted = new EventEmitter();
+  toggleHighlight = new EventEmitter();
 
   constructor() {
   }
@@ -20,6 +20,7 @@ export class HighlightedDirective {
   Angular automatically checks host property bindings during change detection,
   and if a binding changes it updates the host element of the directive.
   */
+
   @HostBinding('class.highlighted')
   get cssClasses() {
     return this.isHighlighted;
@@ -31,16 +32,17 @@ export class HighlightedDirective {
   Angular invokes the supplied handler method when the host element emits the specified event,
   and updates the bound element with the result.
   */
+
   @HostListener('mouseover', ['$event'])
   mouseOver($event: any) {
     this.isHighlighted = true;
-    this.toggleHighlighted.emit(this.isHighlighted);
+    this.toggleHighlight.emit(this.isHighlighted);
   }
 
   @HostListener('mouseleave')
   mouseOut() {
     this.isHighlighted = false;
-    this.toggleHighlighted.emit(this.isHighlighted);
+    this.toggleHighlight.emit(this.isHighlighted);
   }
 
 
@@ -50,7 +52,7 @@ export class HighlightedDirective {
    */
   toggle(){
     this.isHighlighted = !this.isHighlighted;
-    this.toggleHighlighted.emit(this.isHighlighted);
+    this.toggleHighlight.emit(this.isHighlighted);
   }
 
 }
